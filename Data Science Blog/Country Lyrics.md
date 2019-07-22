@@ -6,4 +6,4 @@ layout: default
 
 Text here
 
-[back](./index.md)
+[back](../../)
