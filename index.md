@@ -1,4 +1,4 @@
 ## Data Science Musings
 
 
-[Rock Lyrics](./Data Science Blog/Country Lyrics.md)
+[Analysis of Country Lyrics](./Data Science Blog/Country Lyrics.md)
