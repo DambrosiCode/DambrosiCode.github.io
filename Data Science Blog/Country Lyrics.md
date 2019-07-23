@@ -33,10 +33,7 @@ ggplot(lost.songs, aes(y = lost.songs[,1], x = 1944:2014, color=lost.songs[,1]))
 
 cor(x = lost.songs[,1], y = 1944:2014)
 ```  
-![Some text]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Lost Songs Country.png)
-
-
-![Song lyrics lost to oblivion](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Lost%20Songs%20Country.png)
+![Songs lost to oblivion]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Lost Songs Country.png)
 
 This wasn't a huge deal since I still had plenty of data each year to work with, so I simply removed NAs and worked with what I had
 ```R
@@ -77,7 +74,7 @@ ggplot(country, aes(y = country$Unique, x = country$Year)) +
   geom_point() + geom_smooth() + xlab("Year") + ylab("Unique Words") + 
   ggtitle("Unique Words in a Song", subtitle = "Country Songs")
 ```  
-![Unique words](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Unique%20Country.png)
+![Unique words]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Unique Country.png)
   
  It looked like there was some kind of a trend. The trend line seemed to increase with year, and using lm() we can confirm that there is about a .44 increase of unique words added to a song each year
  ```R
@@ -92,7 +89,7 @@ ggplot(as.data.frame(unique.song), aes(y = unique.song, x = 1944:2014, color = u
   geom_point(size = 2) + geom_smooth() + xlab("Year") + ylab("Unique Words") + 
   ggtitle("Unique Words in a Song", subtitle = "country Songs") + theme(legend.position = "none")
 ``` 
-![Unique words, averaged each year](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Mean%20Unique%20Words%20Country.png)
+![Unique words, averaged each year]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Mean Unique Words Country.png)
 
 As it turns out the slope seems to increase drastically somehwere in the 90s. The odd thing is, one would imagine that an increase of unique words would be a good thing for song quality, but my hypothesis was that country songs get worse over time. But once again lm() confirmed that the slope went from .16 in the first 50 years (1944-1993) to a whopping 0.825 (1995-2014). 
  ```R
@@ -114,7 +111,7 @@ ggplot(as.data.frame(country.lex), aes(y = country.lex*100, x = 1944:2014, color
 
 lm(country.lex*100~c(1944:2014))
 ``` 
-!(Average percent of unique words every year)[https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/percent%20unique%20country.png]
+![Unique word to length ratio, averaged every year]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/percent unique country.png)
 
 And lo and behold, when averaging over the yearlly data, there is a clear trend. Not too dramatic (about a .05% decrease every year), but it's still something, and there is more data to be sprunged. 
 
