@@ -91,11 +91,30 @@ ggplot(as.data.frame(unique.song), aes(y = unique.song, x = 1944:2014, color = u
 ``` 
 ![Unique words, averaged each year](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Mean%20Unique%20Words%20Country.png)
 
-As it turns out the slope seems to increase drastically somehwere in the 90s. The odd thing is, one would imagine that an increase of unique words would be a good thing for song quality, but my hypothesis was that country songs get worse over time. But once again lm() confirmed that the slope went from .16 in the first 50 years (1944-1993) to a whopping 0.825 (1995-2014). Still there was more data to be sprunged. 
+As it turns out the slope seems to increase drastically somehwere in the 90s. The odd thing is, one would imagine that an increase of unique words would be a good thing for song quality, but my hypothesis was that country songs get worse over time. But once again lm() confirmed that the slope went from .16 in the first 50 years (1944-1993) to a whopping 0.825 (1995-2014). 
  ```R
 lm(unique.song[1:50] ~ c(1944:1994))
 lm(unique.song[51:71] ~ c(1994:2014))
 ``` 
+
+Then it occured to me, the amount of unique words should be weighted against the length of a song. After all a shorter song is going to have less unique words just as a function of less space for the artist to write in. By dividing the number of unique words in a song by the number of words in general I could get a better grasp of the writer's ability to make use of the space given (a talent I clearly don't have as this article isn't close to being over). 
+
+ ```R
+library(ngram)
+country$Lex <- sapply(country$Lyrics, function(x) wordcount(as.character(unique(clean_string(x))))/wordcount(as.character(x)))
+
+country.lex <- tapply(country$Lex, country$Year, mean)
+
+ggplot(as.data.frame(country.lex), aes(y = country.lex*100, x = 1944:2014, color = country.lex)) + 
+  geom_point(size = 2) + xlab("Year") + ylab("Percent of Unique Words") + geom_smooth(se = F, method = 'lm') + 
+  ggtitle("Percent of Unique Words in a Song", subtitle = "Country Songs") + theme(legend.position = "none")
+
+lm(country.lex*100~c(1944:2014))
+``` 
+!(Average percent of unique words every year)[https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/percent%20unique%20country.png]
+
+And lo and behold, when averaging over the yearlly data, there is a clear trend. Not too dramatic (about a .05% decrease every year), but it's still something, and there is more data to be sprunged. 
+
 ### Yearly Sentiments
    
 [back](../../)
