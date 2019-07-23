@@ -20,9 +20,72 @@ layout: default
    
   #### Something's Missing
   
-  The first big hurtle I faced was the fact that more than a few songs were missing from the data. I suspected this was because Genius likely doesn't have all the lyrics for every song, and it probably would be the older songs that were less likely to be in Genius's database. 
-   
+  The first big hurtle I faced was the fact that more than a few songs were missing from the data. I suspected this was because Genius likely doesn't have all the lyrics for every song, and it probably would be the older songs that were less likely to be in Genius's database. And using some clever coding we can see that yes, there is about a -0.84 correlation between year and what song lyrics we can get.  
   
+  
+```R
+library(ggplot2)
+country <- read.csv('Country_Roads.txt', sep = '\t', fileEncoding="latin1")  
+
+lost.songs <- as.data.frame(tapply(country$Lyrics, country$Year, function(x) sum(is.na(x))))  
+
+ggplot(lost.songs, aes(y = lost.songs[,1], x = 1944:2014, color=lost.songs[,1])) +   geom_point(size = 3) + xlab('Year') + ylab('Lost Songs') + ggtitle("Lost Songs") +  theme(legend.position = "none")
+
+cor(x = lost.songs[,1], y = 1944:2014)
+```  
+![Song lyrics lost to oblivion](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Lost%20Songs%20Country.png)
+
+This wasn't a huge deal since I still had plenty of data each year to work with, so I simply removed NAs and worked with what I had
+```R
+country <- na.omit(country)
+```  
+
+### Unique Words
+
+To clarify, when I say "unique words" I mean the first time a new word is used, not including stop-words such as "a", "the", "and", etc... For example, "The devil went down to Georgia" would have 4 unique words in it, while "Drink a beer, drink a beer." would count as just 2 unique words.
+
+For this I needed to make a few functions that would let me split the string into multiple strings by word, and a function that would return the number of unique words. 
+```R
+library(dplyr)
+library(stopwords)
+clean_string = function(song_lyrics){
+  x <- as.character(song_lyrics) %>%
+    removeWords(., c(stopwords())) %>%
+    str_split(.,' ', simplify = T) %>% 
+    .[. != '']
+  
+  return(x)
+}
+
+find_unique = function(x){
+  y <- clean_string(x) %>%
+    unique(.) %>%
+    length(.)
+  return(y)
+}
+```  
+The first function splitting the string by word and removing stop-words, and the second one counting the number of unique words. The piping function (%>%) in also helped me to keep my sanity while reformatting.  
+
+Then I made a new column in my dataframe that told me the unique words and voila
+```R
+country$Unique <- sapply(country$Lyrics, find_unique)
+
+ggplot(country, aes(y = country$Unique, x = country$Year)) + 
+  geom_point() + geom_smooth() + xlab("Year") + ylab("Unique Words") + 
+  ggtitle("Unique Words in a Song", subtitle = "Country Songs")
+```  
+![Unique words](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Unique%20Country.png)
+  
+ It looked like there was some kind of a trend. The trend line seemed to increase with year, and using lm() we can confirm that there is about a .4 increase of unique words added to a song each year
+ ```R
+lm(formula = country$Unique ~ country$Year)
+```  
+ Coefficients:  
+ (Intercept)  country$Year  
+   -814.5874        0.4402 
+   
+   
+   
 [back](../../)
 
 
