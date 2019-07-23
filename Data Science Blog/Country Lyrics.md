@@ -14,11 +14,11 @@ layout: default
   
   I decided to use Python for scraping and making my data sheet for two reasons, one: I'm more comfortable data scraping on Python, and two: the Genius library let me enter artist and song and return lyrics as a string. R can do both of these things, but everything ran just a bit smoother in Python. With a simple function (whose code you can find [here](https://github.com/DambrosiCode/music_analysis/blob/master/lyrics%20getter) ) I was able to create a csv with an Year, Artist, Song, and Lyric column in about 30 minutes. Then it was off to analysis
   
-  ### Analyzing Some Lyrics
+### Analyzing Some Lyrics
   
    Looking at the songs it was apparent that I'd need to focus on just the lyrics, since getting actual musical data was far beyond the scope of this project. But that would be just fine. I decided to look at three things: The amount of unique words, a sentiment analysis, and commonly words used.
    
-  #### Something's Missing
+### Something's Missing
   
   The first big hurtle I faced was the fact that more than a few songs were missing from the data. I suspected this was because Genius likely doesn't have all the lyrics for every song, and it probably would be the older songs that were less likely to be in Genius's database. And using some clever coding we can see that yes, there is about a -0.84 correlation between year and what song lyrics we can get.  
   
