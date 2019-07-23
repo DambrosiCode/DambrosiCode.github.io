@@ -8,7 +8,7 @@ layout: default
   
   This is going to be a bit subjective. I'll be using cold hard data science and soulless graphs to try and look quantify something as personal as taste in music. I'll try to look at every angle, but at the end of the day, music is a personal preference and no amount of statistics or pleasantly crafted graphs can change that. But by Fisher I'll try anyway.
   
-  ### Getting Some Data
+### Getting Some Data
   
   I decided that the best way to do this is to look at the top Country hits each year. I'd need to scrape some data to compile a list of Artist, Song, Lyrics, and Year produced. Luckily for me this was relatively easy thanks to the glorious, and neatly organized, website [Playback.fm](https://playback.fm/charts/country) which gave me the top 100 songs and artist for every year going back to 1944. 
   
