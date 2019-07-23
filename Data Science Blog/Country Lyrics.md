@@ -33,6 +33,8 @@ ggplot(lost.songs, aes(y = lost.songs[,1], x = 1944:2014, color=lost.songs[,1]))
 
 cor(x = lost.songs[,1], y = 1944:2014)
 ```  
+<img src="{{ site.baseurl }}/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Lost%20Songs%20Country.png"
+
 ![Song lyrics lost to oblivion](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Lost%20Songs%20Country.png)
 
 This wasn't a huge deal since I still had plenty of data each year to work with, so I simply removed NAs and worked with what I had
