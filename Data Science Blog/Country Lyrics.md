@@ -33,7 +33,10 @@ ggplot(lost.songs, aes(y = lost.songs[,1], x = 1944:2014, color=lost.songs[,1]))
 
 cor(x = lost.songs[,1], y = 1944:2014)
 ```  
-<img src="{{ site.baseurl }}/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Lost%20Songs%20Country.png"
+<link rel="stylesheet" href="{{ site.baseurl }}/css/css.css">
+<script src="{{ site.baseurl }}/js/scripts.js"></script>
+<img src="{{ site.baseurl }}/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Lost%20Songs%20Country.png">
+<a href="{{ site.baseurl }}/linkto/">Link</a>
 
 ![Song lyrics lost to oblivion](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Lost%20Songs%20Country.png)
 
