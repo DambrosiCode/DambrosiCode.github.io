@@ -76,15 +76,27 @@ ggplot(country, aes(y = country$Unique, x = country$Year)) +
 ```  
 ![Unique words](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Unique%20Country.png)
   
- It looked like there was some kind of a trend. The trend line seemed to increase with year, and using lm() we can confirm that there is about a .4 increase of unique words added to a song each year
+ It looked like there was some kind of a trend. The trend line seemed to increase with year, and using lm() we can confirm that there is about a .44 increase of unique words added to a song each year
  ```R
 lm(formula = country$Unique ~ country$Year)
 ```  
- Coefficients:  
- (Intercept)  country$Year  
-   -814.5874        0.4402 
    
-   
+I decided to average this data and see if there was a more obvious trend. 
+ ```R
+unique.song <- tapply(country$Unique, country$Year, mean)
+
+ggplot(as.data.frame(unique.song), aes(y = unique.song, x = 1944:2014, color = unique.song)) + 
+  geom_point(size = 2) + geom_smooth() + xlab("Year") + ylab("Unique Words") + 
+  ggtitle("Unique Words in a Song", subtitle = "country Songs") + theme(legend.position = "none")
+``` 
+![Unique words, averaged each year](https://github.com/DambrosiCode/DambrosiCode.github.io/blob/master/Data%20Science%20Blog/images/Country%20Lyrics/Mean%20Unique%20Words%20Country.png)
+
+As it turns out the slope seems to increase drastically somehwere in the 90s. The odd thing is, one would imagine that an increase of unique words would be a good thing for song quality, but my hypothesis was that country songs get worse over time. But once again lm() confirmed that the slope went from .16 in the first 50 years (1944-1993) to a whopping 0.825 (1995-2014). Still there was more data to be sprunged. 
+ ```R
+lm(unique.song[1:50] ~ c(1944:1994))
+lm(unique.song[51:71] ~ c(1994:2014))
+``` 
+### Yearly Sentiments
    
 [back](../../)
 
