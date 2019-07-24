@@ -40,7 +40,7 @@ This wasn't a huge deal since I still had plenty of data each year to work with,
 country <- na.omit(country)
 ```  
 
-### Unique Words
+## Unique Words
 
 To clarify, when I say "unique words" I mean the first time a new word is used, not including stop-words such as "a", "the", "and", etc... For example, "The devil went down to Georgia" would have 4 unique words in it, while "Drink a beer, drink a beer." would count as just 2 unique words.
 
@@ -115,8 +115,73 @@ lm(country.lex*100~c(1944:2014))
 
 And lo and behold, when averaging over the yearlly data, there is a clear trend. Not too dramatic (about a .05% decrease every year), but it's still something, and there is more data to be sprunged. 
 
-### Yearly Sentiments
-   
+## Yearly Sentiments
+There's a host of sentiment analysis packages out there, most of them hosted in the tidytext library. I decided on afinn, which provides word positivity and negativity on a scale of -5 to 5, where 5 is the most positive of words and -5 is the least.
+
+Using tibble() in the tidytext package and assigned an afinn sentiment to each word, then averaged the sentiment each year to get a general idea of what the songs. 
+```R
+library(tidytext)
+
+lyrics <- tibble()
+for (i in seq_along(country$Year)) {
+  clean <- tibble(year = country$Year[i], lyr = as.character(country$Lyrics[i])) %>%
+                  unnest_tokens(word, lyr)
+
+  lyrics <- rbind(lyrics, clean)  
+}
+
+lyrics <- lyrics %>%
+  inner_join(get_sentiments('afinn')) 
+
+sentiment <- as.data.frame(tapply(lyrics$value, lyrics$year, mean))
+``` 
+![Unique word to length ratio, averaged every year]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Aver sentiment.png)
+
+Because the afinn-scale is positive and negative a perfectly neutral year would have a sentiment of 0. Here we can see that overall Country music is fairly positive, but a bit bleaker in its earlier day. The red line is the overall mean, and between about 1960s to the end of the 90s the average song is happier than usual. Interstingly these are the decades that most people don't have a problem with country music.
+
+## Common Words
+Finally I took a look at what would probably be the most telling, commonly used words. I decided that the best way to do this would be to pick out words that people (myself included) associate with *bad* country music. These words would be: truck(s), beer, Jesus/God, America, and gun(s).
+
+Because there are varying song lyrics and lyric lengths each year I decided that the best way to present the data would not be as a total count of the words used, but instead as a percentage showing what percent of the songs each year were made up of these no-no words. 
+
+```R
+word_finder <- function(word){
+  words <- as.numeric(tapply(country$Lyrics, country$Year, 
+                  function(x) sort(decreasing = T, table(clean_string(x))[word])/wordcount(as.character(x))))
+  
+  words[is.na(words)] <- 0
+
+  return(words)
+}
+
+word.count <- data.frame(god = word_finder('god')+word_finder('jesus'), 
+                         beer = word_finder('beer'),
+                         truck = word_finder('truck')+word_finder('trucks'),
+                         US = word_finder('america'),
+                         gun = word_finder('gun')+word_finder('guns'))*100
+
+
+ggplot(word.count) + 
+  geom_smooth(aes(x = 1944:2014, y = word.count$god, color = 'God/Jesus'), se = F) +
+  geom_smooth(aes(x = 1944:2014, y = word.count$beer, color = 'beer'), se = F) +
+  geom_smooth(aes(x = 1944:2014, y = word.count$truck, color = 'truck(s)'), se = F) +
+  geom_smooth(aes(x = 1944:2014, y = word.count$US, color = 'America'), se = F) +
+  geom_smooth(aes(x = 1944:2014, y = word.count$gun, color = 'gun(s)'), se = F) +
+  geom_point(aes(x = 1944:2014, y = word.count$god, color = 'God/Jesus')) +
+  geom_point(aes(x = 1944:2014, y = word.count$beer, color = 'beer')) +
+  geom_point(aes(x = 1944:2014, y = word.count$truck, color = 'truck(s)')) +
+  geom_point(aes(x = 1944:2014, y = word.count$US, color = 'America')) +
+  geom_point(aes(x = 1944:2014, y = word.count$gun, color = 'gun(s)')) +
+  xlab("Year") + ylab("Percent of Word usage") + ggtitle("Percentage of Words Used")
+``` 
+![Unique word to length ratio, averaged every year]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Word Use All.png)
+
+Here we can see there there is a sharp uptick of words in our list right around the start of the 90s, particularly in God/Jesus and beer. I decided to look at God/Jesus usage, and interestingly the usage for those words shoot up just after the 1969 and just after 2001, those years being the start of the Vietnam war, and the events of 9/11 respectively.
+
+![Unique word to length ratio, averaged every year]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Word Use God.png)
+
+A similar trend can be found all of the other words where just after 9/11 and '69 those words (except for guns) tick-up, though God/Jesus is the most prominant. 
+
 [back](../../)
 
 
