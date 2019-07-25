@@ -176,11 +176,19 @@ ggplot(word.count) +
 ``` 
 ![Unique word to length ratio, averaged every year]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Word Use All.png)
 
-Here we can see there there is a sharp uptick of words in our list right around the start of the 90s, particularly in God/Jesus and beer. I decided to look at God/Jesus usage, and interestingly the usage for those words shoot up just after the 1969 and just after 2001, those years being the start of the Vietnam war, and the events of 9/11 respectively.
+Here we can see there there is a sharp uptick of words in our list right around the start of the 90s, particularly in God/Jesus and beer. I decided to look at God/Jesus usage, and interestingly the usage for those words shoot up just after the 1969 and just after 2001, those years being the start of the Vietnam War draft, and the events of 9/11 respectively.
 
 ![Unique word to length ratio, averaged every year]({{site.url}}{{site.baseurl}}/Data Science Blog/images/Country Lyrics/Word Use God.png)
 
-A similar trend can be found all of the other words where just after 9/11 and '69 those words (except for guns) tick-up, though God/Jesus is the most prominant. 
+## Conclusion
+It's difficult to place a timestamp on when music "got bad" or "was good" because of it's sujectivity. Based on what we've seen we can take a guess to when country music changed, however, and because a different beast. The average percentage of unique words per song decreases over time. There's also a huge increase of sentiment in the end of 20th century with a small spike in the first few years of the 21st. And finally words associated with country music, to the point where it's essentially a cliche, have a strong correlation with country wide angst. It also appears that the words take a slight dip near the 80s and into the 90s, and then are used again after 2001 at an even greater rate than before. 
+
+Taking all this into account country music can be divded into three eras:
+
+* 1944-1975 - **Classic Country** Down to earth, a little depressing, very acoustic. Essentially, or literally, folk music often singing about simple everyday things.    
+* 1976-9/11/2001 - **Rock Country** Upbeat, electic dance music about little kids kicking the crap out of satan in villion-offs. The country is doing well financially and has less to worry about without a draft or major wars (Cold War not withstanding) and it shows in music.  
+* 9/12/2001-Present - **Modern Country** Returning to it's down to earch roots, but this time heavily featuring conservative imagery such as God and guns and America, very likely as a reaction to the events of 9/11.
+
 
 [back](../../)
 
