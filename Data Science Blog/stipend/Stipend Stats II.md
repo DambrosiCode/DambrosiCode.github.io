@@ -183,3 +183,4 @@ Now the map will give you an overview of the LW ratio and state name when you cl
 
 You can see the map [here](./Stipend Stats.html).
 
+[back](../../)
