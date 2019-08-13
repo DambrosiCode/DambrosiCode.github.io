@@ -191,18 +191,3 @@ Taking all this into account country music can be divded into three eras:
 
 
 [back](../../)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
