@@ -193,4 +193,6 @@ stipend_loc.to_csv('Stipe And Locations.txt', sep='\t')
 ```
 
 And thus a beautiful new csv was born. If you'd like to take a look and play with the data 
-you can [here](). And some stats and the map I made with the data can be found in part 2.
+you can [here](https://github.com/DambrosiCode/Stipend-Data). And some stats and the map I made with the data can be found in [./Stipend Stats II.md](part II).
+
+[back](../../)
