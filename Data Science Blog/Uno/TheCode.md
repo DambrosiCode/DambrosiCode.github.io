@@ -192,5 +192,58 @@ play <- function(player){
 }
 
 ```
+### game()
+Finally, I just needed a function that would let n number of players take their turn in a sucessive manner, perform an action when an action card was played, and then return the winner and the turns taken when a game ended.
 
+Intially game() sets up and deals a hand of seven cards to n players (by default it's 4 since that's my family's size). current.turn keeps track of the current player's turn, and turn count counts the total number of turns taken. Then in the while() loop players take turns and based on the current target.card (IE the card just played) and affect will happen. The while() loop breaks when the target card == 'win' and the turns taken and winner is returned as well as a print() statement congradulating the winner.
+```R
+game <- function(players = c(1:4)){
+  setup()
+  
+  current.turn <- next.turn(players) #the next player
+  turn.count <- 0 #how many turns have passed
+  
+  #deal cards
+  for (i in 1:length(players)) {
+    player[[i]] <- draw(7, player[i])
+  }
+  
+  while (target.card[[1]] != 'win') {
+    #print(next.turn(players))
+    
+    if (next.turn(players) == 2) {
+      player[[next.turn(players)]] <- play(player[[next.turn(players)]])[[1]] #player using a strategy will go here
+    } 
+    else {
+      player[[next.turn(players)]] <- play(player[[next.turn(players)]])[[1]] #playing normally
+    }
+    
+    
+    #card effects
+    if (target.card[1] == 'reverse') {
+      next.player <<- next.player * -1 #turn counter now subtracts from current turn
+    } 
+    else if (target.card[1] == 'skip') {
+      player.turn <<- next.turn(players) #next player gets no chance to play a card
+    } 
+    else if (target.card[1] == 'draw'){
+      player[[next.turn(players)]] <- draw(2, player[[next.turn(players)]]) #next player draws +2
+    } 
+    else if (target.card[1] == 'wild.4'){
+      player[[next.turn(players)]] <- draw(4, player[[next.turn(players)]]) #next player draws +4
+    }
+    
+    turn.count <- turn.count + 1 #count turns
+    player.turn <<- next.turn(players)
+  
+  }
+  cat(c('Player', player.turn, 'has won in', turn.count, 'turns!' ))
+  if (turn.count > 1000) {
+    return(c('draw', turn.count))
+  }
+  return(c(player.turn, turn.count))
+}
+```
 
+## Closing Remarks
+Making a full Uno simulation in R isn't recommended. The code was a bit clunkier than what I could have done in another language like Python, and ran slower when I ran my 1000x games forloop() in the next part. Luckily I'll be able to use baseR functions in the next part to do some analysis on some strategies
