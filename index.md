@@ -1,9 +1,11 @@
 # Data Science Musings
 
 ## Stipend Stats per State Part II
+A look at the collected data in Part I
 [Read more](./Data Science Blog/stipend/Stipend Stats II.md)
 
 ## Stipend Stats per State Part I
+Nearing the end of my career in academia I have a few choices to make, namely what I want to do when I graduate The idea of pursuing a PhD and becoming a professional student is attractive, but not without its pitfalls. One of my biggest concerns is living expenses. little more than 20 grand a year hardly seems livable, however, my cohorts seem to all make it work so I deicded to take a closer look and see what average stipend looked like based on the living wage in each state.
 [Read more](./Data Science Blog/stipend/Stipend Stats I.md)
 
 ## A Data Science Look at Country Lyrics
