@@ -33,7 +33,7 @@ for the morbidly curious, you can find the code here. INSERT LINK TO GITHUB PAGE
 ### No Strategies  
 First I need to establish a baseline. Hypothetically, the players should each have a 25% chance of winning, but there may be a bias towards player turn which may a be a strateegy
 in and of itself. I also need a control to compare the actual strategy win/loses against, therefore I'll run 1000 sessions where all 4 players play normally.
-INSERT GRAPH
+![No Strategy strategy]({{site.url}}{{site.baseurl}}/Data Science Blog/Uno/No Strategy.png)
 
 ### Play Suits First  
 Matching in a game of Uno can involve suits or symbols, however the chances of getting a matching symbol is much smaller than a suit, and usually only done to change
