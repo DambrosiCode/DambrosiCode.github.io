@@ -10,9 +10,7 @@ the single strategy against 3 other players who will play in the normal fasion. 
 	Player will pick a color regardless of if it's in their hand or not
 4) Pick Wild Color from Most Common Color in Hand
 	Here the player, instead of picking a random color, will pick the most common color in their hand
-5) Pick Wild Color from Least Common Colot in Hand
-	Here the player, instead of picking a random color, will pick the least common color in their hand
-6) Play Wilds Last
+5) Play Wilds Last
 	Here the wild cards will be played if there are only wild cards left in the hand. This is a strategy I've personally tried and anecdotally let me say, I'm not too confident. 
 	
 For reference: the normal strategy is to play a random matching card. If there's no match then to play a wild, and choose a color for the wild from a color in-hand. If the 
@@ -29,40 +27,57 @@ for the morbidly curious, you can find the code here. INSERT LINK TO GITHUB PAGE
 
 ## Strategies
 
-
 ### No Strategies  
 First I need to establish a baseline. Hypothetically, the players should each have a 25% chance of winning, but there may be a bias towards player turn which may a be a strateegy
 in and of itself. I also need a control to compare the actual strategy win/loses against, therefore I'll run 1000 sessions where all 4 players play normally.
+
 ![No Strategy strategy]({{site.url}}{{site.baseurl}}/Data Science Blog/Uno/No Strategy.png)
+
+It looks pretty much like you'd expect. Of course there is some variance so it's not a perfect 25/25/25/25, but considering there's nothing weird here I'll move onward, using a .25 probability of winning as a baseline for binomial test. 
 
 ### Play Suits First  
 Matching in a game of Uno can involve suits or symbols, however the chances of getting a matching symbol is much smaller than a suit, and usually only done to change
 a color without a Wild Card. Therefor there may be some benefit choosing to play suits over symbols, or vice-versa. We'll look at both. 
-INSERT GRAPH
+
+![Suits Priority strategy]({{site.url}}{{site.baseurl}}/Data Science Blog/Uno/Suit Priority.png)
+
+Not much of a change from playing no strategies. 
 
 ### Play Symbols First
 Now we'll try it the other way
-INSERT GRAPH
+
+![Symbol Priority strategy]({{site.url}}{{site.baseurl}}/Data Science Blog/Uno/Symbol Priority.png)
+
+Again, not much of a boon or bust. It may offer a slight disadvantage when it changes the color to something you don't have in hand, but otherwise it won't help.
 
 ### Pick a Random Wild Color
 Generally speaking when a player picks a wild card color they like to pick from a color in their hand to increase their odds of being able to go
 in the next round. However, it's entirely possible that the color in play will change by the time it gets back around to that player, not only negating his color
 choice but also increasing the odds that there is now a color he CAN'T play. 
-INSERT GRAPH
+
+![Random Wild Color strategy]({{site.url}}{{site.baseurl}}/Data Science Blog/Uno/Random Wild.png)
+
+Interstingly choosing a random wild doesn't seem to hurt or help an uno game in any statistically meaningful way. However, it may be useful in a real game witth humans who strategize like the world poker tournament. Choosing a random color clearly doesn't hurt one's chances of winning, but it can help to conceal what colors one has in their hand, thereby giving a slight edge.
 
 ### Pick Wild Color from Most Common Color in Hand  
 For the same reasons as above we'll see what happens when the color choice is more calculated.
-INSERT GRAPH
 
-### Pick Wild Color from Least Common Color in Hand
-And just one more instance
-INSERT GRAPH
+![Most Common Wild Color strategy]({{site.url}}{{site.baseurl}}/Data Science Blog/Uno/Most Wild.png)
+
+It's pretty clear here that there's not a real benefit to picking a wild card from a color in the hand, likely for the same reason it doesn't hurt to choose a random color.
 
 ### Play Wilds Last
 Here's the most common strategy I've heard other people play. By saving Wild Cards for the last you're guarenteed to win as long as no one else +4 or +2's you 
-and doesn't win before you. However, it may be a detriment to save wild cards since that means you'll be drawing cards when you could be playing. 
-INSERT GRAPH
+and doesn't win before you. However, it may be a detriment to save wild cards since that means you'll be drawing cards when you could be playing.
 
+![Wild Last strategy]({{site.url}}{{site.baseurl}}/Data Science Blog/Uno/Wild Last.png)
+
+Finally, it looks like playing wilds last is the worst strategy on the board here. Reducing the winning rate by nearly 60%, there's no reason anyone should do this unless they want to lose.
+
+## Conclusion
+As far as Uno strategies go using brute statistics, there aren't many. I, of course, may be overlooking some (and please let me know if I am) but from what I can gather the game is as random as it looks, at least when playing to a strategy. But keep in mind this is a game with humans and human rationality and it's impossible to code that kind of thought process into a simulation such as this. However psyching out your opponent, calling them out for not saying "Uno" and yes, even flipping over the table in bling rage after your THIRD PLUS FOUR WILD CARD are all valid strategies I couldn't account for. 
+
+As far as future strategies based off of this the only one that looks feasible is to randomly choose a wild card color to keep opponents guessing, and never save wilds until the last card. 
 
 
 
