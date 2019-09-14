@@ -1,5 +1,15 @@
 # Data Science Musings
 
+## Testing uno Strategies Part II: Strategies
+In my last post, I made a small Uno simulation in R in the hopes of finding a play-strateegy that would allow me to crush my family. By tinkering with the code I'll pit the single strategy against 3 other players who will play in the normal fasion. I've picked out a few strategies I'd like to try.
+[Read more](./Data Science Blog/Uno/Uno_PartII.md)
+
+## Testing uno Strategies Part I: The Code
+My family has always been into board and card games so everytime I go home we usually play a few games, usually one more than another. Recently this was the classic card game/yell at the guy next to you for screwing you over Uno. After several rounds, many which went on for what felt longer the life of the Sun, I had learned one thing: I suck at Uno.
+
+I don't know how this happens, there's really not much of a strategy you can employ, since it's pretty reactionary. Or is it? I had a few ideas for a strategy and not nearly enough time to play it. So I decided to make my computer do all the work
+[Read more](./Data Science Blog/Uno/TheCode.md)
+
 ## Stipend Stats per State Part II
 A look at the collected data in Part I
 [Read more](./Data Science Blog/stipend/Stipend Stats II.md)
