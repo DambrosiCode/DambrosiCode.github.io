@@ -29,7 +29,13 @@ for the morbidly curious, you can find the code here. INSERT LINK TO GITHUB PAGE
 
 ### No Strategies  
 First I need to establish a baseline. Hypothetically, the players should each have a 25% chance of winning, but there may be a bias towards player turn which may a be a strateegy
-in and of itself. I also need a control to compare the actual strategy win/loses against, therefore I'll run 1000 sessions where all 4 players play normally.
+in and of itself. I also need a control to compare the actual strategy win/loses against, therefore I'll run n sessions where all 4 players play normally.
+
+To determine the session iterations I need to calculate an adequate sample size. Using a CI of .05, we'll want a precision of .025. We're assuming that there's a Pr{win = .25} so using the sample.size.prop() function in the samplingbook library in R we can calculate 
+``` 
+samplingbook::sample.size.prop(e = .025, P=.25)
+```
+we need to run approximately 1153 games.
 
 ![No Strategy strategy]({{site.url}}{{site.baseurl}}/Data Science Blog/Uno/No Strategy.png)
 
