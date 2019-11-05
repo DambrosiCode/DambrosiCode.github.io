@@ -29,7 +29,7 @@ We're interested in the Old Count, Old.Perc, Recent Count, and Recent.Perc data.
 
 To see if a change is significany we'll use a simple proportion test using the prop.test() in R. The idea is simple, given a change in proportion (old reviews to recent reviews) is can we be at least 95% confident that the change is significant. This method works for what we're after because it takes into account not only the proportion shift, but also the sample size. 
 
-Before we do this, however, we also want to make sure that the power for the test is adequate. Afterall we don't want too many instance of a significant change in reviews appearing not significant. And in this case "too many" is more than 20%, so we're looking for games that can give us at least 80% power. Unfortunately base R doesn't let us look at power the way we want to, as their power.prop.test function only allows for one sample size, and since our sample size is certainly changing I'll be using the pwr.2p2n.test() function from the "pwr" library. 
+Before we do this, however, we also want to make sure that the power for the test is adequate. Afterall we don't want too many instance of a significant change in reviews appearing not significant. And in this case "too many" is more than 20%, so we're looking for games that can give us at least 80% power. Unfortunately base R doesn't let us look at power the way we want to, as their power.prop.test function only allows for one sample size, and since our sample size is certainly changing I'll be using the pwr.2p2n.test() function from the "pwr" library which will calculate the power for the 2 sample proportion test we'll perform with prop.test(). 
 
 ```
 alpha <- 0.05
