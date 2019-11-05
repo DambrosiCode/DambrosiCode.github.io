@@ -31,3 +31,20 @@ To see if a change is significany we'll use a simple proportion test using the p
 
 Before we do this, however, we also want to make sure that the power for the test is adequate. Afterall we don't want too many instance of a significant change in reviews appearing not significant. And in this case "too many" is more than 20%, so we're looking for games that can give us at least 80% power. Unfortunately base R doesn't let us look at power the way we want to, as their power.prop.test function only allows for one sample size, and since our sample size is certainly changing I'll be using the pwr.2p2n.test() function from the "pwr" library. 
 
+```
+alpha <- 0.05
+power <- 0.8
+power.func <- function(data) {
+  
+  data <- as.numeric(data)
+  
+  x <- pwr.2p2n.test(n1 = data[5], n2 = data[7],
+                h = ES.h(data[6], data[8]), sig.level = alpha)
+    
+    return(x$power)
+}
+
+reviews$Power <- apply(reviews, 1, power.func)
+```
+
+Here the power.func() function is taking the number of reviews and the effect size of proportions (calculated by the ES.h() function). Using the apply() function each game will now have a power associated with it. 
