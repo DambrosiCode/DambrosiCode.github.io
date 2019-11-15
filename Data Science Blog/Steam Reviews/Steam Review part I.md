@@ -48,3 +48,35 @@ reviews$Power <- apply(reviews, 1, power.func)
 ```
 
 Here the power.func() function is taking the number of reviews and the effect size of proportions (calculated by the ES.h() function). Using the apply() function each game will now have a power associated with it. 
+
+We can now get the P-values associated with the shift in review frequencies. We'll make a function called sig.func that will take the overall frequencies and current frequencies and get us a P-value.
+```{R}
+sig.func <- function(data) {
+  data <- as.numeric(data)
+  p.vals <- prop.test(c(data[3]*data[4], data[5]*data[6]),
+                 c(data[3], data[5]))
+  
+  return(p.vals$p.val)
+}
+
+reviews$p.val <- apply(reviews, 1, sig.func)
+```
+
+Finally we can take a look at the reviews with a greater than or equal to 80% power and look at the distribution.  
+```
+reviews.powerful <- reviews[which(reviews$Power >= beta),]
+length(which(reviews.powerful$p.val < .05))/nrow(reviews.powerful)
+which.min(reviews.powerful$p.val)
+reviews.powerful[181,]
+
+hist(reviews.powerful$Overall.Perc, breaks = 10)
+hist(reviews.powerful$Old.Perc, breaks = 10)
+hist(reviews.powerful$Recent.Perc, breaks = 10)
+```
+[graph]
+[graph]
+[graph] 
+
+Here we get an idea of the distribution of significant changes in rating.
+
+
