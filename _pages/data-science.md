@@ -4,13 +4,26 @@ permalink: /data-science/
 title: "Data Science Projects"
 author_profile: true
 ---
-{% include base_path %}
-{% include group-by-array collection=site.posts field="tags" %}
-
-{% for tag in group_names %}
-  {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
-  {% for post in posts %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endfor %}
+<div class="tags-expo">
+  <div class="tags-expo-list">
+    {% for tag in site.tags %}
+    <a href="#{{ tag[0] | slugify }}" class="post-tag">{{ tag[0] }}</a>
+    {% endfor %}
+  </div>
+  <hr/>
+  <div class="tags-expo-section">
+    {% for tag in site.tags %}
+    <h2 id="{{ tag[0] | slugify }}">{{ tag | first }}</h2>
+    <ul class="tags-expo-posts">
+      {% for post in tag[1] %}
+        <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+      <li>
+        {{ post.title }}
+      <small class="post-date">{{ post.date | date_to_string }}</small>
+      </li>
+      </a>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </div>
+</div>
