@@ -188,4 +188,4 @@ ggiraph(code=print(g))
 ```
 Now the map will give you an overview of the LW ratio and state name when you click on a state.
 
-{% include stpend_map.html %}
+{% include stipend_map.html %}
