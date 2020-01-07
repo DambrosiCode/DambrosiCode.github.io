@@ -290,10 +290,10 @@ defaults:
       share: true
       related: true
 
-  # _pages
+  # _posts
   - scope:
       path: ""
       type: pages
-     values:
+    values:
       layout: single
       author_profile: true
