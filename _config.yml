@@ -112,11 +112,8 @@ author:
   bio              : "Data Science Musings."
   location         : "West Creek, NJ"
   email            : "matthew.t.dambrosio@gmail.com"
-  linkedin         : "https://www.linkedin.com/in/matthew-d-ambrosio-390878153/"
+  linkedin         : "matthew-d-ambrosio-390878153"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: mailto:matthew.t.dambrosio@gmail.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
