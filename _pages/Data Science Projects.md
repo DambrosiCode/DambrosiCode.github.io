@@ -1,6 +1,6 @@
 ---
 layout: archive
-permalink: /Data Science/
+permalink: /data-science/
 title: "Data Science Projects"
 ---
 

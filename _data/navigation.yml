@@ -2,5 +2,5 @@
 main:
   - title: "About"
     url: /about/
-  - title: "Data Science"
+  - title: "data-science"
     url: /Data Science/
