@@ -1,5 +1,5 @@
 ---
-title: "PhD Stipends Part I: The Code"
+title: "PhD Stipends Part II: Stats and a Map"
 date: 2020-01-07
 tags: [Statistics, Interactive, Map, Stipend Stats]
 category: "Data Science"
@@ -186,6 +186,6 @@ g <- ggplot(data = states) +
 
 ggiraph(code=print(g))
 ```
-Now the map will give you an overview of the LW ratio and state name when you click on a state. 
+Now the map will give you an overview of the LW ratio and state name when you click on a state.
 
 {% include stpend_map.html %}
