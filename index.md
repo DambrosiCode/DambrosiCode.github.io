@@ -1,4 +1,4 @@
-# Data Science Musings
+# Data Science Musings egg
 
 ## Testing uno Strategies Part II: Strategies
 In my last post, I made a small Uno simulation in R in the hopes of finding a play-strateegy that would allow me to crush my family. By tinkering with the code I'll pit the single strategy against 3 other players who will play in the normal fasion. I've picked out a few strategies I'd like to try.
