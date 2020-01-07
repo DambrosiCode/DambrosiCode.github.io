@@ -133,7 +133,7 @@ author:
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
     - label "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
+      icon: "fab fa-fw fa-github"
       url: "https://www.linkedin.com/in/matthew-d-ambrosio-390878153/"
 # Site Footer
 footer:
