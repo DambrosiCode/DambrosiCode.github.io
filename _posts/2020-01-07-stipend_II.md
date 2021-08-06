@@ -16,7 +16,7 @@ library(outliers)
 library(dplyr)
 
 
-stipend.dat <- read.csv('C:/Users/mattd/Desktop/Projects/Python Projects/Stipe And Locations.txt', sep='\t')
+stipend.dat <- read.csv('Stipe And Locations.txt', sep='\t')
 
 
 #FIND OUTLIERS
